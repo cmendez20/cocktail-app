@@ -1,16 +1,21 @@
 const drinkSection = document.querySelector(".drink");
+const spinner = document.getElementById("spinner");
 
 async function getCocktailData() {
+  drinkSection.innerHTML = "";
+  showSpinner();
   const response = await fetch(
     "https://www.thecocktaildb.com/api/json/v1/1/random.php"
   );
   const data = await response.json();
+  hideSpinner();
   renderData(data);
 }
 
 const renderData = (data) => {
   console.log(data.drinks[0]);
   const drink = data.drinks[0];
+
   drinkSection.innerHTML = `
       <h2 class='drink-name mb-sm'>${drink.strDrink}</h2>
 
@@ -34,3 +39,14 @@ const renderData = (data) => {
 };
 
 getCocktailData();
+
+function showSpinner() {
+  spinner.className = "show";
+  setTimeout(() => {
+    spinner.className = spinner.className.replace("show", "");
+  }, 5000);
+}
+
+function hideSpinner() {
+  spinner.className = spinner.className.replace("show", "");
+}
