@@ -1,4 +1,4 @@
-const main = document.querySelector("main");
+const drinkSection = document.querySelector(".drink");
 
 async function getCocktailData() {
   const response = await fetch(
@@ -10,8 +10,6 @@ async function getCocktailData() {
 
 const renderData = (data) => {
   console.log(data.drinks[0]);
-  const drinkSection = document.createElement("section");
-  drinkSection.classList.add("drink");
   const drink = data.drinks[0];
   drinkSection.innerHTML = `
       <h2 class='drink-name mb-sm'>${drink.strDrink}</h2>
@@ -22,15 +20,17 @@ const renderData = (data) => {
       >
       <p class='txt--italic mb-sm'>${drink.strAlcoholic}</p>
       <section class="drink-ingredients mb-md">
-        <p class='mb-xs'>Ingredient 1: ${drink.strIngredient1}</p>
-        <p class='mb-xs'>Ingredient 2: ${drink.strIngredient2}</p>
-        <p class='mb-xs'>Ingredient 3: ${drink.strIngredient3}</p>
+        <p class='mb-xs'><span>Ingredient 1</span>: ${drink.strIngredient1}</p>
+        <p class='mb-xs'><span>Ingredient 2</span>: ${drink.strIngredient2}</p>
+        <p class='mb-xs'><span>Ingredient 3</span>: ${drink.strIngredient3}</p>
       </section>
 
       <button class="drink-btn">New Cocktail</button>
   `;
 
-  main.appendChild(drinkSection);
+  document
+    .querySelector(".drink-btn")
+    .addEventListener("click", getCocktailData);
 };
 
 getCocktailData();

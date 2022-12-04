@@ -38,11 +38,15 @@ h1 {
   font-size: clamp(2.25rem, 9.3vw - 1.8rem, 4rem);
   text-align: center;
   color: #ff79e9;
-  padding: 2rem;
+  padding: 2.25rem;
 }
 
 h2 {
   font-size: clamp(1.5rem, 8.8vw - 2.3rem, 3.15rem);
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-style: wavy;
+  text-decoration-color: #ff79e9;
 }
 
 p {
@@ -54,13 +58,21 @@ p {
   place-items: center;
 }
 
+.drink-ingredients {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.drink-ingredients span {
+  font-style: italic;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
 .drink-img {
   max-width: 50%;
   border-radius: 5px;
-}
-
-.drink-ingredients {
-  /* margin-bottom: 1rem; */
 }
 
 .drink-btn {
@@ -71,7 +83,8 @@ p {
   color: #212121;
   font-weight: bold;
   font-style: italic;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
+  font-size: 16px;
 }
 
 .drink-btn:hover {
