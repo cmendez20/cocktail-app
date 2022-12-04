@@ -8,9 +8,10 @@ async function getCocktailData() {
 
 const renderData = (data) => {
   console.log(data.drinks[0]);
+  const drinkSection = document.createElement("section");
+  drinkSection.classList.add("drink");
   const drink = data.drinks[0];
-  const html = `
-    <section class='drink'>
+  drinkSection.innerHTML = `
       <h2 class='drink-name'>${drink.strDrink}</h2>
 
       <img class="drink-img"
@@ -21,10 +22,11 @@ const renderData = (data) => {
       <p>Ingredient 1: ${drink.strIngredient1}</p>
       <p>Ingredient 2: ${drink.strIngredient2}</p>
       <p>Ingredient 3: ${drink.strIngredient3}</p>
-    </section>
+
+      <button class="drink-btn">New Cocktail</button>
   `;
 
-  document.querySelector("section").innerHTML = html;
+  document.querySelector("h1").append(drinkSection);
 };
 
 getCocktailData();
