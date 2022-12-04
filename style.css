@@ -42,7 +42,7 @@ h1 {
   font-size: clamp(2.25rem, 9.3vw - 1.8rem, 4rem);
   text-align: center;
   color: #ff79e9;
-  padding: 1.75rem;
+  padding: 1.5rem;
 }
 
 h2 {

@@ -16,7 +16,7 @@ const renderData = (data) => {
   console.log(data.drinks[0]);
   const drink = data.drinks[0];
 
-  drinkSection.innerHTML = `
+  window.onload = drinkSection.innerHTML = `
       <h2 class='drink-name mb-sm'>${drink.strDrink}</h2>
 
       <img class="drink-img mb-sm"
