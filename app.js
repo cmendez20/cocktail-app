@@ -19,7 +19,7 @@ const renderData = (data) => {
         alt=${drink.strDrink} cocktail drink
       >
       <p class='txt--italic mb-sm'>${drink.strAlcoholic}</p>
-      <section class="drink-ingredients mb-md">
+      <section class="drink-ingredients">
         <p class='mb-xs'><span>Ingredient 1</span>: ${drink.strIngredient1}</p>
         <p class='mb-xs'><span>Ingredient 2</span>: ${drink.strIngredient2}</p>
         <p class='mb-xs'><span>Ingredient 3</span>: ${drink.strIngredient3}</p>
