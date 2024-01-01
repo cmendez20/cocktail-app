@@ -65,7 +65,10 @@ p {
 }
 
 .drink-img {
-  max-width: 20%;
+  height: auto;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: auto 320 / 320;
   margin-bottom: 2rem;
   border-radius: 5px;
 }

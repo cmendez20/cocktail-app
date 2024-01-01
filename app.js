@@ -36,6 +36,8 @@ const renderData = data => {
       <img class="drink-img"
         src=${drink.strDrinkThumb}
         alt=${drink.strDrink} cocktail drink
+        width='320'
+        height='320'
       >
       <p class='txt--italic'>${drink.strAlcoholic}, <span class='drink-category'>${drink.strCategory}</span></p>
       <section class="drink-ingredients">
