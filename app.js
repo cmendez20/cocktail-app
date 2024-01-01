@@ -1,52 +1,65 @@
-const drinkSection = document.querySelector(".drink");
-const spinner = document.getElementById("spinner");
+const drinkSection = document.querySelector('.drink');
+const spinner = document.getElementById('spinner');
 
 async function getCocktailData() {
-  drinkSection.innerHTML = "";
+  drinkSection.innerHTML = '';
   showSpinner();
-  const response = await fetch(
-    "https://www.thecocktaildb.com/api/json/v1/1/random.php"
-  );
-  const data = await response.json();
+  try {
+    const response = await fetch(
+      'https://www.thecocktaildb.com/api/json/v1/1/random.php'
+    );
+    const data = await response.json();
+    renderData(data);
+  } catch (error) {
+    console.error(error);
+  }
   hideSpinner();
-  renderData(data);
 }
 
-const renderData = (data) => {
-  console.log(data.drinks[0]);
+const renderData = data => {
   const drink = data.drinks[0];
+  let drinkIngredients = '';
+  const drinkIngredientsArray = Object.keys(drink)
+    .filter(key => key.includes('strIngredient'))
+    .map(key => {
+      if (drink[key]) return drink[key];
+    })
+    .filter(el => el !== undefined);
+
+  drinkIngredientsArray.forEach((ing, i) => {
+    drinkIngredients += `<p><span>Ingredient ${i + 1}</span>: ${ing}\n</p>`;
+  });
 
   window.onload = drinkSection.innerHTML = `
-      <h2 class='drink-name mb-sm'>${drink.strDrink}</h2>
+      <h2 class='drink-name'>${drink.strDrink}</h2>
 
-      <img class="drink-img mb-sm"
+      <img class="drink-img"
         src=${drink.strDrinkThumb}
         alt=${drink.strDrink} cocktail drink
       >
-      <p class='txt--italic mb-sm'>${drink.strAlcoholic}</p>
+      <p class='txt--italic'>${drink.strAlcoholic}, <span class='drink-category'>${drink.strCategory}</span></p>
       <section class="drink-ingredients">
-        <p class='mb-xs'><span>Ingredient 1</span>: ${drink.strIngredient1}</p>
-        <p class='mb-xs'><span>Ingredient 2</span>: ${drink.strIngredient2}</p>
-        <p class='mb-xs'><span>Ingredient 3</span>: ${drink.strIngredient3}</p>
+        ${drinkIngredients}
       </section>
 
       <button class="drink-btn">New Cocktail</button>
   `;
 
   document
-    .querySelector(".drink-btn")
-    .addEventListener("click", getCocktailData);
+    .querySelector('.drink-btn')
+    .addEventListener('click', getCocktailData);
 };
 
 getCocktailData();
 
 function showSpinner() {
-  spinner.className = "show";
+  spinner.className = 'show';
   setTimeout(() => {
-    spinner.className = spinner.className.replace("show", "");
+    spinner.className = spinner.className.replace('show', '');
   }, 5000);
 }
 
 function hideSpinner() {
-  spinner.className = spinner.className.replace("show", "");
+  spinner.classList.add('destroy');
+  spinner.className = spinner.className.replace('show', '');
 }
